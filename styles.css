@@ -5,3 +5,67 @@ padding: 0;
 margin: 0;
 font-family: 'Raleway', sans-serif;
 }
+
+
+/* navbar */
+header nav{
+    background-color:antiquewhite;
+}
+/* banner */
+
+/* cards */
+.row{ 
+  padding-bottom: 200px;
+
+
+}
+
+/* form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+padding-top: 10%;  
+padding-bottom: 20%;
+}
+
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #405f38;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+
+/*  footer*/
+footer{
+    background-color: antiquewhite;
+}
+
+/* details */
+
+/* contact */
+/* postevents */
+/* stats*/
+ .table th td tr {
+  border: 1px solid black; 
+  border-collapse:collapse;
+  font-size: 12px;
+  background-color: rgb(241, 240, 234);
+  empty-cells: show;
+  table-layout:fixed;
+ }
+
+
+/* upcoming*/
