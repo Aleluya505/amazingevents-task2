@@ -1,26 +1,3 @@
-@media only screen and (min-width: 360px) {
-  /* Ajustes para pantallas de 360px o más */
-  .navbar-nav-scroll {
-    --bs-scroll-height: 200px;
-  }
-}
-
-/* Min-width 768px */
-@media only screen and (min-width: 768px) {
-  /* Ajustes para pantallas de 768px o más */
-  .srch {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-/* Min-width 1200px */
-@media only screen and (min-width: 1200px) {
-  /* Ajustes para pantallas de 1200px o más */
-  .banner {
-    height: 500px;
-  }
-}
 *{
 box-sizing: border-box;
 padding: 0;
@@ -66,17 +43,25 @@ header nav{
   left: 10px;
 }
 
-input[type="text"], input[type="date"], input[type="checkbox"], input[type="radio"] {
-  font-size: 5px;
-  padding: 5px;
-  margin-bottom: 10px;
-  border: none;
-  border-bottom:solid 1px black;     
-}
+/* checkbox */
 .container-fluid{
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+label {
+  padding-left: 15px;
+  text-indent: -15px;
+}
+input {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin:0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
 }
 
 
@@ -183,3 +168,26 @@ footer{
 
 /* upcoming*/
 
+@media only screen and (min-width: 360px) {
+  /* Ajustes para pantallas de 360px o más */
+  .navbar-nav-scroll {
+    --bs-scroll-height: 200px;
+  }
+}
+
+/* Min-width 768px */
+@media only screen and (min-width: 768px) {
+  /* Ajustes para pantallas de 768px o más */
+  .srch {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Min-width 1200px */
+@media only screen and (min-width: 1200px) {
+  /* Ajustes para pantallas de 1200px o más */
+  .banner {
+    height: 500px;
+  }
+}
