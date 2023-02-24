@@ -1,6 +1,11 @@
+
 let postEvent = "";
-    for (let event of data.event){
-        postEvent  += createCard (event)
-        
-    }
-    console.log (postEvent)
+let tarjets = document.getElementById("container-cards");
+for (let event of data.events){
+    let eventDate = new Date(event.date);
+    if (eventDate < currentDate) {
+        postEvent += createCard(event)
+        }
+}
+console.log(postEvent);
+tarjets.innerHTML = postEvent;
