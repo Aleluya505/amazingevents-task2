@@ -1,5 +1,10 @@
 let upComing = "";
-    for (let event of data.events){
+let tarjets = document.getElementById("container-cards");
+for (let event of data.events){
+     let eventDate = new Date(event.date);
+    if (eventDate < currentDate){
         upComing += createCard (event)
     }
-    console.log (upComing)
+}
+console.log (upComing)
+tarjets.innerHTML += upComing;

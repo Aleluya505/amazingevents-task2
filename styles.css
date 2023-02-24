@@ -12,22 +12,21 @@ font-size: 16px;
   background-color: #6c5ce7;
 }
 /* navbar */
-/* .header{
-    background-color:antiquewhite;
-} */
+
 .navbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; 
   background-color: blue;
   /* color: rgb(254, 231, 166); */
   background: rgb(245, 230, 238)  ;
 }
 .navbar .nav-link {
-  background-color: rgb(252, 197, 184) ; 
+  background-color: rgb(244, 206, 100) ; 
   text-align: center;
   font-size: 1rem;
   -webkit-text-stroke: 0.1rem rgb(82, 80, 76);
   letter-spacing: 1px;
+  flex-grow: 0 !important;
 }
 
 .nav-item {
@@ -46,7 +45,7 @@ font-size: 16px;
 }
 /* banner */
 .banner {
-  position: relative;
+  position: sticky;
   margin-bottom: 30px;
 }
 .banner>a{
@@ -55,13 +54,13 @@ font-size: 16px;
   transform: translateY(-50%);
   text-decoration: none;
 
-}
+ }
 .siguiente{
   right: 10px;
 }
 .anterior{
   left: 10px;
-}
+} 
 
 /* checkbox */
 .container-fluid{
@@ -105,31 +104,7 @@ font-family: "raleway";
 text-shadow: #090909;
 
 }
-/* form {
-  display: flex;
-  flex-direction:row;
-  align-items: baseline;
-  width: 75%;
-  margin: 0;
-  padding-bottom: 30%;
-}
 
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-} */
-
-/* .submit-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #405f38;
-  color: white;
-  border: none;
-  cursor: pointer;
-  align-self: flex-end;
-} */
 input.form-control {
   font-size: 1.2rem;
 }
@@ -156,8 +131,7 @@ textarea.form-control {
   margin-bottom: 50px;
 }
 
-/* contact */
-/* postevents */
+
 /* stats*/
  .table th td tr {
   border: 1px solid black; 
@@ -173,7 +147,7 @@ textarea.form-control {
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 10px; 
+  padding: auto; 
   background-color: antiquewhite;
  
 }
@@ -203,7 +177,7 @@ transform: scale(1.2);
 
 }
 
-/* upcoming*/
+
 
 @media only screen and (min-width: 360px) {
   /* Ajustes para pantallas de 360px o más */
