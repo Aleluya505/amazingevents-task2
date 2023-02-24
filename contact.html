@@ -66,17 +66,29 @@
              <a class="siguiente" href="./stats.html">➡️</a>
               <img src="./assets/contact.png" style="width: 100%;" alt="upcoming">
             </div>
-            
-     
-              <form>
-                <input type="text1" placeholder="Nombre" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Mensaje" required></textarea>
-                <button class="submit-btn">Enviar</button>
-              </form>
-      
-
-        
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <form class="border border-dark p-4 text-center">
+                    <div class="mb-3">
+                      <label for="nombre" class="form-label">Nombre:</label>
+                      <input type="text" class="form-control-lg w-100 form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email:</label>
+                      <input type="email" class="form-control-lg w-100 form-control" id="email" placeholder="Ingrese su correo electrónico" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="mensaje" class="form-label">Mensaje:</label>
+                      <textarea class="form-control-lg w-100 form-control" id="mensaje" rows="3" placeholder="Escriba su mensaje aquí" required></textarea>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-warning">Enviar mensaje</button>
+                    </div> 
+                  </form>
+                </div>
+              </div>
+            </div>
       </main>   
       <footer>
         <div class="buttons">
