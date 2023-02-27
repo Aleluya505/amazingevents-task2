@@ -37,7 +37,7 @@ font-size: 16px;
   border-radius: 5px;
   text-decoration: none;
   color: #333;
-  font-size: 14px bold;
+  font-size: 14px;
   
 }
 
@@ -101,7 +101,7 @@ input {
   vertical-align: bottom;
   position: relative;
   top: -1px;
-  *overflow: hidden;
+  overflow: hidden;
 }
 
 
@@ -122,8 +122,6 @@ input {
 form {
 font-size: 1rem;
 font-family: "raleway";
-text-shadow: #090909;
-
 }
 
 input.form-control {
@@ -139,8 +137,6 @@ textarea.form-control {
   font-size: small;
   text-align: center;
   width: 100px;
-
-
 }
 
 
@@ -151,7 +147,6 @@ textarea.form-control {
   align-items: center;
   margin-bottom: 50px;
 }
-
 
 /* stats*/
  .table th td tr {
@@ -164,38 +159,38 @@ textarea.form-control {
  }
 
  /* footer */
- footer{
+ footer {
+  box-sizing: border-box;
+  display: flex;
+  padding: 10px;
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: auto; 
-  background-color:  rgb(245, 230, 238);
- 
+  background-color: rgb(245, 230, 238);
 }
 
-.buttons{
-
-display: flex;
-justify-content:flex-start;
-margin-inline-start: 20px;
-flex-direction: row;
-
-
+.buttons a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+  width: 50px;
+  height:50px;
 }
-.buttons svg{
-text-decoration: none;
-background: hsl(0, 20%, 97%);
-color: #090909;
-font-size: 500%;
- line-height: 50px;
-text-align: start;
-border-radius: 500%;
-box-shadow: 2px 2px 5px rgb(0, 0, 0);
-margin: 10px;
+.buttons a:first-child {
+  margin-right: 10px;
 }
-.buttons svg :hover{
-transform: scale(1.2);
 
+.buttons svg {
+  height: 30px;
+  width: 30px;
+  fill: #000;
+  transition: transform 0.2s ease-in-out;
+  margin-left: 15px;
+}
+
+.buttons svg:hover {
+  transform: scale(1.2);
 }
 
 
@@ -208,12 +203,14 @@ transform: scale(1.2);
 }
 
 /* Min-width 768px */
+
 @media only screen and (min-width: 768px) {
   /* Ajustes para pantallas de 768px o más */
   .srch {
     display: flex;
     justify-content: center;
   }
+  
 }
 
 /* Min-width 1200px */
@@ -223,3 +220,4 @@ transform: scale(1.2);
     height: 500px;
   }
 }
+
