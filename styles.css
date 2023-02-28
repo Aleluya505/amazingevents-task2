@@ -167,6 +167,7 @@ textarea.form-control {
   bottom: 0;
   width: 100%;
   background-color: rgb(245, 230, 238);
+  justify-content: space-between;
 }
 
 .buttons a {
