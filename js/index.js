@@ -24,7 +24,7 @@ for ( category of categorias) {
 }
 containerChecks.innerHTML = listaCategorias;
 
-// para cuando se chequean las categorias.
+// 
 
 
 let catCheck = document.querySelectorAll(".form-check-input")
@@ -48,7 +48,6 @@ for (check of catCheck) {
 });
 };
 
-
 let resultados = []; //array vacio para introducir las busquedas.
 
 let inputBusqueda = document.getElementById("search");
@@ -71,20 +70,20 @@ let textIngresado = inputBusqueda.value.toLowerCase().trim();
 }
 
 let formBusqueda = document.querySelector("#form-busqueda");
-let wordIngresada = formBusqueda.querySelector("input[name='wordIngresada']");
+let wordIngresada = document.getElementById("search").value;
 
     formBusqueda.addEventListener("submit", (evento) => {
     evento.preventDefault(); //EVITA QUE SE ENVIE EL FORM AUTOMATICAMENTE.
-          
-let search = wordIngresada.value.trim();
-let result = buscar(value);
+
+let search = wordIngresada.trim();
+let result = buscar(search);
 mostrarResultados(result);
 })
+console.log(wordIngresada);
 
-
-function buscar(word){
-  let resultado = [];
-  return resultado;
+function buscar(){
+  let result = [];
+  return result;
 }
 function mostrarResultados(result){
   let verResultado = document.querySelector("#resultados-busqueda");

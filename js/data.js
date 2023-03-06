@@ -203,3 +203,4 @@ let chequear = ` <div class="d-flex flex-wrap justify-content-center spacing-1px
 </div>`;
 return chequear;
 }
+
