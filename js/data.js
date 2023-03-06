@@ -195,4 +195,11 @@ return card;
   ///Incorporar filtros para cada busqueda de entrada y
   // checkbox parta cada categoria 
 
-
+function checkBoxes(category) {
+let chequear = ` <div class="d-flex flex-wrap justify-content-center spacing-1px" id="container-inputs">
+<div class="form-check form-check-inline">
+  <input class="form-check-input border border-warning" type="checkbox" name="Category" value="${category}">
+  <label class="form-check-label" for="${category}">${category}</label>
+</div>`;
+return chequear;
+}
