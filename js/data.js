@@ -183,9 +183,16 @@ let data = {
         <a href="./details.html" class="btn btn-warning lg w-50">Details</a>
       </div>
     </div>
-  </div>`;  // interpolar datos para reemplazar mi estructura. 
+  </div>`;  // interpolar datos para reemplazar mi estructura 
+  //con los simbolos
+  //${}
 return card;  
 }
 
  let currentDate = new Date(data.currentDate);
   console.log(currentDate); //dejar esta funcion porque permite hacer el presente.
+
+  ///Incorporar filtros para cada busqueda de entrada y
+  // checkbox parta cada categoria 
+
+
