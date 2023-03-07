@@ -179,27 +179,42 @@ let data = {
       <div class="card-body">
         <h5 class="card-title">${event.name}</h5>
         <p class="card-text">${event.description}</p>
-        <span class="card-text">${event.price}</span>
-        <a href="./details.html" class="btn btn-warning lg w-50">Details</a>
+        <span class="card-text">$${event.price}</span>
+        <a href="./details.html" class="btn float-end btn-warning lg w-50">Details</a>
       </div>
     </div>
-  </div>`;  // interpolar datos para reemplazar mi estructura 
-  //con los simbolos
-  //${}
+  </div>`;  
 return card;  
 }
 
  let currentDate = new Date(data.currentDate);
-  console.log(currentDate); //dejar esta funcion porque permite hacer el presente.
-
-  ///Incorporar filtros para cada busqueda de entrada y
-  // checkbox parta cada categoria 
+  console.log(currentDate); 
 
 function checkBoxes(category) {
-let chequear = ` <div class="d-flex flex-wrap justify-content-center spacing-1px" id="container-inputs">
+let chequear = ` <div class="d-flex justify-content-center spacing-2px" id="container-inputs">
 <div class="form-check form-check-inline">
   <input class="form-check-input border border-warning" type="checkbox" name="Category" value="${category}">
   <label class="form-check-label" for="${category}">${category}</label>
 </div>`;
 return chequear;
+}
+
+function buscar(textBuscar, arrayBusqueda) {
+  let result = arrayBusqueda.filter(elementoB => elementoB.name.toLowerCase().includes(textBuscar) || elementoB.description.toLowerCase().includes(textBuscar));
+
+  return result;
+}
+
+function mostrarResultados(result) {
+  if (result.length > 0) {
+    let htmlResultados = "";
+
+    for (let r of result) {
+      htmlResultados += createCard(r);
+    }
+
+    tarjets.innerHTML = htmlResultados;
+  } else {
+    tarjets.innerHTML = "<p>No results found for the search. Try again.</p>";
+  }
 }
