@@ -71,22 +71,3 @@ document.querySelector("#form-busqueda").onsubmit = (e) => {
   });
 };
 
-function buscar(textBuscar, arrayBusqueda) {
-  let result = arrayBusqueda.filter(elementoB => elementoB.name.toLowerCase().includes(textBuscar) || elementoB.description.toLowerCase().includes(textBuscar));
-
-  return result;
-}
-
-function mostrarResultados(result) {
-  if (result.length > 0) {
-    let htmlResultados = "";
-
-    for (let r of result) {
-      htmlResultados += createCard(r);
-    }
-
-    tarjets.innerHTML = htmlResultados;
-  } else {
-    tarjets.innerHTML = "<p>No results found for the search. Try again.</p>";
-  }
-}
