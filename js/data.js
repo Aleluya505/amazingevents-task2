@@ -180,14 +180,14 @@ let data = {
         <h5 class="card-title">${event.name}</h5>
         <p class="card-text">${event.description}</p>
         <span class="card-text">$${event.price}</span>
-        <a href="./details.html" class="btn float-end btn-warning lg w-50">Details</a>
+        <a href="./details.html?id=${event._id}" class="btn float-end btn-warning lg w-50">+ info</a>
       </div>
     </div>
   </div>`;  
 return card;  
 }
 
- let currentDate = new Date(data.currentDate);
+let currentDate = new Date(data.currentDate);
   console.log(currentDate); 
 
 function checkBoxes(category) {
@@ -218,3 +218,4 @@ function mostrarResultados(result) {
     tarjets.innerHTML = "<p>No results found for the search. Try again.</p>";
   }
 }
+
