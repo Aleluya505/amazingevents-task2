@@ -191,7 +191,7 @@ let currentDate = new Date(data.currentDate);
   console.log(currentDate); 
 
 function checkBoxes(category) {
-let chequear = ` <div class="d-flex justify-content-center spacing-2px" id="container-inputs">
+let chequear = ` <div class="d-flex justify-content-center spacing-2px my-auto" id="container-inputs">
 <div class="form-check form-check-inline">
   <input class="form-check-input border border-warning" type="checkbox" name="Category" value="${category}">
   <label class="form-check-label" for="${category}">${category}</label>
