@@ -180,18 +180,18 @@ let data = {
         <h5 class="card-title">${event.name}</h5>
         <p class="card-text">${event.description}</p>
         <span class="card-text">$${event.price}</span>
-        <a href="./details.html" class="btn float-end btn-warning lg w-50">Details</a>
+        <a href="./details.html?id=${event._id}" class="btn float-end btn-warning lg w-50">+ info</a>
       </div>
     </div>
   </div>`;  
 return card;  
 }
 
- let currentDate = new Date(data.currentDate);
+let currentDate = new Date(data.currentDate);
   console.log(currentDate); 
 
 function checkBoxes(category) {
-let chequear = ` <div class="d-flex justify-content-center spacing-2px" id="container-inputs">
+let chequear = ` <div class="d-flex justify-content-center spacing-2px my-auto" id="container-inputs">
 <div class="form-check form-check-inline">
   <input class="form-check-input border border-warning" type="checkbox" name="Category" value="${category}">
   <label class="form-check-label" for="${category}">${category}</label>
@@ -218,3 +218,4 @@ function mostrarResultados(result) {
     tarjets.innerHTML = "<p>No results found for the search. Try again.</p>";
   }
 }
+

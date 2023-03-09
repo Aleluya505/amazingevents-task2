@@ -16,17 +16,17 @@ font-size: 16px;
 .navbar {
   display: flex;
   justify-content: flex-end; 
-  background-color: blue;
-  /* color: rgb(254, 231, 166); */
-  background: rgb(245, 230, 238)  ;
+  background: rgb(245, 230, 238);
+  
 }
 .navbar .nav-link {
-  background-color: rgb(244, 206, 100) ; 
+  background-color: rgb(244, 206, 100); 
   text-align: center;
   font-size: 1rem;
   -webkit-text-stroke: 0.1rem rgb(82, 80, 76);
   letter-spacing: 1px;
   flex-grow: 0 !important;
+  
 }
 
 .nav-item {
@@ -60,6 +60,7 @@ font-size: 16px;
   color: #fff; /* Cambia el color del texto a blanco al pasar el cursor sobre el botón */
   background-color: #f26e98; /* Cambia el color de fondo al pasar el cursor sobre el botón */
 }
+
 main{
   padding: 10px;
   margin: 20px;
@@ -97,26 +98,9 @@ main{
   left: 0;
 }
 /* checkbox */
-.container-fluid{
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.form-check-label {
+  font-weight: bold;
 }
-label {
-  padding-left: 15px;
-  text-indent: -15px;
-}
-input {
-  width: 13px;
-  height: 13px;
-  padding: 0;
-  margin:0;
-  vertical-align: bottom;
-  position: relative;
-  top: -1px;
-  overflow: hidden;
-}
-
 
 /* cards */
 .row{ 
@@ -128,8 +112,8 @@ input {
   align-content: flex-end;
 }
 .card-img-top {
-  height: 200px; /* ajusta la altura de la imagen */
-  object-fit: cover; /* cubre toda el área del contenedor */
+  height: 200px; 
+  object-fit: cover; 
 }
 .card {
   height: 400px; /* ajusta la altura de la card */
@@ -137,10 +121,11 @@ input {
   box-shadow: 0px 0px 5px rgba(0,0,0,1.1); /* agrega sombra */
 }
 
+
 /* form */
 form {
 font-size: 1rem;
-font-family: "raleway";
+font-family: "raleway", sans-serif, arial;
 }
 
 input.form-control {
@@ -149,6 +134,10 @@ input.form-control {
 
 textarea.form-control {
   font-size: 1.4rem;
+}
+form .form-label {
+  text-align: left;
+  font-weight: bold;
 }
 /* details */
 .details .texto{
