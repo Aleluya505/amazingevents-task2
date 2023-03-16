@@ -2,13 +2,11 @@ async function getData(){
   await fetch("https://mindhub-xj03.onrender.com/api/amazing")
   .then(respuesta => respuesta.json())
   .then(json => data=json)
-  localStorage.setItem("data",JSON.stringify(data))
+  localStorage.setItem("data",JSON.stringify(data))//el stringify sirve para guardar los elementos en el local storage y sean visibles como tales y no como objetos. en formato JSON. 
 } 
-
 getData();
 
-
-  function createCard(event){
+function createCard(event){
   let card =`<div class="col">
     <div class="card h-100 border-warning ">
       <img src="${event.image}" class="card-img-top" alt="cinema">

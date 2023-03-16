@@ -1,3 +1,6 @@
+let data = localStorage.getItem("data");
+data = JSON.parse(data) // extrae del local storage los arrays a strings-
+console.log(data); 
 
 let upComing = "";
 let tarjets = document.getElementById("container-cards");

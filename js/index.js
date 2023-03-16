@@ -1,5 +1,5 @@
-let data=localStorage.getItem("data");
-  data = JSON.parse(data)
+let data = localStorage.getItem("data");
+data = JSON.parse(data) // extrae del local storage los arrays a strings-
 console.log(data); 
 
 // tarjetas dinamicas visibles en los html 
@@ -57,58 +57,75 @@ for (check of catCheck) {
 //Resultados de las busquedas del usuario.
 let resultados = []; // array vacío para introducir las búsquedas.
 let inputBusqueda = document.getElementById("search");
+let categoriasSeleccionadas = [];
 
-
-function mostrarSeleccion(categoriasSeleccionadas, search) {
-  let seleccionUsuario = document.createElement("p");
-  seleccionUsuario.textContent = `Categorías seleccionadas: ${categoriasSeleccionadas.join(", ")}. Palabra clave: ${search}`;
-  document.querySelector("#resultados-busqueda").appendChild(seleccionUsuario);
-}
-
-document.querySelector("#form-busqueda").onsubmit = (e) => {
-  e.preventDefault(); // no se actualiza la página con cada envío de formulario.
-
-  let formBusqueda = document.querySelector("#form-busqueda");
-  let wordIngresada = document.getElementById("search");
-
-  formBusqueda.addEventListener("submit", (evento) => {
-    evento.preventDefault(); 
-
-    let search = wordIngresada.value.toLowerCase().trim();
-    let result = buscar(search, data.events);
-    mostrarResultados(result);
-    mostrarSeleccion(categoriasSeleccionadas, search);
-    console.log(categoriasSeleccionadas)
-    console.log(result);
-    console.log(search);
-    
-  });
-};
-
-//combinacion de las funciones para que cuando se haga click en categorias y se busque, ambas sean visibles al usuario. YA FUNCIONA! 
 function filtrarEventos(categoriasSeleccionadas, palabraClave) {
   let eventosFiltrados = [];
 
   if (categoriasSeleccionadas.length > 0 && palabraClave.length > 0) {
-    eventosFiltrados = data.events.filter(evento =>
-      categoriasSeleccionadas.includes(evento.category)
-    ).filter(evento => evento.title.toLowerCase().includes(palabraClave) || evento.description.toLowerCase().includes(palabraClave))
-
-
+    eventosFiltrados = data.events.filter(
+      (evento) =>
+        categoriasSeleccionadas.includes(evento.category) &&
+        (evento.title.toLowerCase().includes(palabraClave) ||
+          evento.description.toLowerCase().includes(palabraClave))
+    );
   } else if (categoriasSeleccionadas.length > 0) {
-    eventosFiltrados = data.events.filter(evento =>
+    eventosFiltrados = data.events.filter((evento) =>
       categoriasSeleccionadas.includes(evento.category)
     );
   } else if (palabraClave.length > 0) {
-    eventosFiltrados = data.events.filter(evento =>
-      evento.title.toLowerCase().includes(palabraClave) || evento.description.toLowerCase().includes(palabraClave));
-
+    eventosFiltrados = data.events.filter(
+      (evento) =>
+        evento.title.toLowerCase().includes(palabraClave) ||
+        evento.description.toLowerCase().includes(palabraClave)
+    );
   } else {
     eventosFiltrados = data.events;
   }
 
   return eventosFiltrados;
 }
+
+document.querySelector("#form-busqueda").addEventListener("submit", (evento) => {
+  evento.preventDefault(); // no se actualiza la página con cada envío de formulario.
+
+  let search = inputBusqueda.value.toLowerCase().trim();
+  let result = filtrarEventos(categoriasSeleccionadas, search);
+
+  mostrarResultados(result);
+
+  mostrarSeleccion(categoriasSeleccionadas, search);
+
+  console.log(categoriasSeleccionadas);
+  console.log(result);
+  console.log(search);
+});
+
+// código para seleccionar categorías
+let checkboxCategorias = document.querySelectorAll(".categoria");
+
+checkboxCategorias.forEach((checkbox) => {
+  checkbox.addEventListener("change", (evento) => {
+    if (evento.target.checked) {
+      categoriasSeleccionadas.push(evento.target.value);
+    } else {
+      categoriasSeleccionadas = categoriasSeleccionadas.filter(
+        (categoria) => categoria !== evento.target.value
+      );
+    }
+
+    let search = inputBusqueda.value.toLowerCase().trim();
+    let result = filtrarEventos(categoriasSeleccionadas, search);
+
+    mostrarResultados(result);
+
+    mostrarSeleccion(categoriasSeleccionadas, search);
+
+    console.log(categoriasSeleccionadas);
+    console.log(result);
+    console.log(search);
+  });
+});
 
 
 
