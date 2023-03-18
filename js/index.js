@@ -2,132 +2,90 @@ let data = localStorage.getItem("data");
 data = JSON.parse(data) // extrae del local storage los arrays a strings-
 console.log(data); 
 
-// tarjetas dinamicas visibles en los html 
-let indexHome = "";
-let tarjets = document.getElementById("container-cards");
 
-for (let event of data.events) {
-  indexHome += createCard(event);
+//Creacion de tarjetas rel con el data.js
+let containerCard = document.getElementById("card-container");
+
+function crearTarjetas(){
+  let homeIndex = "";
+  for (let event of data.events){
+    homeIndex += createCard(event)
+  };
+    containerCard.innerHTML += homeIndex;
 }
+crearTarjetas();
 
-console.log(indexHome);
-tarjets.innerHTML += indexHome;
+//Generar checkboxes
+categorias();
 
-let categorias = [];
-data.events.forEach(event => {  
-  if(!categorias.includes(event.category)){
-    categorias.push(event.category);
+//combinación de ambos filtros
+
+function ambosFiltros (checking, palabra, homeIndex){
+  for(elemento of checking){
+      data.events.filter(evento => evento == evento.category) && ((evento.name.toLoweCase().includes(palabra) || evento.description.toLoweCase().includes(palabra)) ).forEach(evento => {homeIndex += createCard(evento)});
+       };
+       homeIndex.lenght == 0 ? nothingFound(palabra) : containerCard.innerHTML = homeIndex;
   }
-}); 
-//Categorias que se establecen en los inputs.
-let listaCategorias = "";
-let containerChecks = document.querySelector("#container-inputs");
 
-for (category of categorias) {
-  listaCategorias += checkBoxes(category);
-}
+// filtro checks
 
-containerChecks.innerHTML = listaCategorias;
-
-let catCheck = document.querySelectorAll(".form-check-input");
-for (check of catCheck) {
-  check.addEventListener("change", () => {
-    let chequeado = [];
-
-    for (let tic of catCheck) {
-      if (tic.checked) { 
-        chequeado.push(tic.value)
+let checkeados = document.querySelectorAll(".form-check-input");
+for (let check of checkeados){
+  check.addEventListener("change",() => {
+    let checkeados = [];
+    for (let clic of checkeados){
+      if (clic.checked) {
+        checkeados.push(clic.value);
       }
     }
+    let palabra = inputBusqueda.value.toLowerCase().trim();
+        let homeIndex = "";
+        if ( (checkeados.length > 0) && (palabra == "") ) {
+            for(let elemento of checkeados) {
+                data.events.filter(evento => elemento == evento.category).forEach(evento => { homeIndex += createCard(evento) });
+                cardContainer.innerHTML = homeIndex;
+            };
+        } else if ( (checkeados.length > 0) && (palabra != "") ) {
+           ambosFiltros(checkeados, palabra, homeIndex);            
+        } else {
+            crearTarjetas();
+        };
+    });
+};
 
-    console.log(chequeado);
+//Texto y categoria a buscar
 
-    if (chequeado.length > 0) {
-      let tarjets = "";
-      let containerCard = document.getElementById("container-cards");
+let formBusqueda = document.querySelector(".searchForm")
+let inputBusqueda = document.querySelector(".searchInput")
+formBusqueda.addEventListener("submit", e => {
+    e.preventDefault();
+    let homeIndex = "";
+    let resultados = false;
+    let palabra = inputBusqueda.value.toLoweCase().trim();
 
-      data.events.filter(evento => chequeado.includes(evento.category)).forEach(evento => {
-        tarjets += createCard(evento)
-      });
-
-      containerCard.innerHTML = tarjets;  
-    }
+    let catSelect = [];
+    for (let clic of checkeados) { 
+        if (clic.checked) {
+          catSelect.push(clic.value);
+        };
+    
+};
+    if((palabra != "") && (catSelect.length == 0)) {
+      data.events.forEach(event => {
+        if( (event.name.toLocaleLowerCase().includes(palabra))|| (event.description.toLowerCase().includes(palabra)) ) {
+          homeIndex += createCard(event);
+          resultados = true;
+      }
   });
-}
-//Resultados de las busquedas del usuario.
-let resultados = []; // array vacío para introducir las búsquedas.
-let inputBusqueda = document.getElementById("search");
-let categoriasSeleccionadas = [];
-
-function filtrarEventos(categoriasSeleccionadas, palabraClave) {
-  let eventosFiltrados = [];
-
-  if (categoriasSeleccionadas.length > 0 && palabraClave.length > 0) {
-    eventosFiltrados = data.events.filter(
-      (evento) =>
-        categoriasSeleccionadas.includes(evento.category) &&
-        (evento.title.toLowerCase().includes(palabraClave) ||
-          evento.description.toLowerCase().includes(palabraClave))
-    );
-  } else if (categoriasSeleccionadas.length > 0) {
-    eventosFiltrados = data.events.filter((evento) =>
-      categoriasSeleccionadas.includes(evento.category)
-    );
-  } else if (palabraClave.length > 0) {
-    eventosFiltrados = data.events.filter(
-      (evento) =>
-        evento.title.toLowerCase().includes(palabraClave) ||
-        evento.description.toLowerCase().includes(palabraClave)
-    );
-  } else {
-    eventosFiltrados = data.events;
-  }
-
-  return eventosFiltrados;
-}
-
-document.querySelector("#form-busqueda").addEventListener("submit", (evento) => {
-  evento.preventDefault(); // no se actualiza la página con cada envío de formulario.
-
-  let search = inputBusqueda.value.toLowerCase().trim();
-  let result = filtrarEventos(categoriasSeleccionadas, search);
-
-  mostrarResultados(result);
-
-  mostrarSeleccion(categoriasSeleccionadas, search);
-
-  console.log(categoriasSeleccionadas);
-  console.log(result);
-  console.log(search);
-});
-
-// código para seleccionar categorías
-let checkboxCategorias = document.querySelectorAll(".categoria");
-
-checkboxCategorias.forEach((checkbox) => {
-  checkbox.addEventListener("change", (evento) => {
-    if (evento.target.checked) {
-      categoriasSeleccionadas.push(evento.target.value);
+        if(resultados) {
+          containerCard.innerHTML = homeIndex;
+        }else {
+          nothingFound(palabra);
+        };
+      }else if((resultados != "") && (catSelect.length > 0)) {
+              ambosFiltros(catSelect, palabra, homeIndex);
     } else {
-      categoriasSeleccionadas = categoriasSeleccionadas.filter(
-        (categoria) => categoria !== evento.target.value
-      );
-    }
-
-    let search = inputBusqueda.value.toLowerCase().trim();
-    let result = filtrarEventos(categoriasSeleccionadas, search);
-
-    mostrarResultados(result);
-
-    mostrarSeleccion(categoriasSeleccionadas, search);
-
-    console.log(categoriasSeleccionadas);
-    console.log(result);
-    console.log(search);
-  });
-});
-
-
-
-
-
+      crearTarjetas();
+    };
+      
+});      

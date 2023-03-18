@@ -2,12 +2,12 @@ async function getData(){
   await fetch("https://mindhub-xj03.onrender.com/api/amazing")
   .then(respuesta => respuesta.json())
   .then(json => data=json)
-  localStorage.setItem("data",JSON.stringify(data))//el stringify sirve para guardar los elementos en el local storage y sean visibles como tales y no como objetos. en formato JSON. 
+  localStorage.setItem("data",JSON.stringify(data))
 } 
 getData();
 
 function createCard(event){
-  let card =`<div class="col">
+  let card = `<div class="col col-md-3 col-sm-6">
     <div class="card h-100 border-warning ">
       <img src="${event.image}" class="card-img-top" alt="cinema">
       <div class="card-body">
@@ -17,39 +17,37 @@ function createCard(event){
         <a href="./details.html?id=${event._id}" class="btn float-end btn-warning lg w-50">+ info</a>
       </div>
     </div>
-  </div>`;  
-return card;  
+  </div>`  
+  return card;
 }
+//categorias- checkboxes
+function categorias(){
+  let listaCategorias = "";
+  let check = document.querySelector(".contCheck")
+  let categories =[];
 
-let currentDate = new Date(getData.currentDate);
-  console.log(currentDate); 
-
-function checkBoxes(category) {
-let chequear = ` <div class="d-flex justify-content-center spacing-2px my-auto" id="container-inputs">
-<div class="form-check form-check-inline">
-  <input class="form-check-input border border-warning" type="checkbox" name="Category" value="${category}">
-  <label class="form-check-label" for="${category}">${category}</label>
-</div>`;
-return chequear;
-}
-
-function buscar(textBuscar, arrayBusqueda) {
-  let result = arrayBusqueda.filter(elementoB => elementoB.name.toLowerCase().includes(textBuscar) || elementoB.description.toLowerCase().includes(textBuscar));
-
-  return result;
-}
-
-function mostrarResultados(result) {
-  if (result.length > 0) {
-    let htmlResultados = "";
-
-    for (let r of result) {
-      htmlResultados += createCard(r);
+    data.events.forEach(evento => {
+    if(!categories.includes(evento.category)) {
+      categories.push(evento.category);
+      listaCategorias += `<div class="form-check form-check-inline">
+      <input class="form-check-input checkbox-info shadow-none border border-dark-subtle" type="checkbox" name="Category" value="${evento.category}" id="${evento.category}">
+      <label class="form-check-label" for="${evento.category}">${evento.category}</label>
+      </div>`;
     }
+    check.innerHTML = listaCategorias;
+});
+};
+ 
+//error en la busqueda
+function nothingFound(word) {
+  document.getElementById('container-card').innerHTML = `
+  <div class="text-center">
+  <p class="pb-3"><i class="bi bi-search fs-1"></i></p>
+  <h3>We couldn't find anything for '${word}'</h3>
+  <p>You may want to try using different keywords, deselecting filters, or checking for spelling mistakes.</p>
+  </div>
+  `
+};
 
-    tarjets.innerHTML = htmlResultados;
-  } else {
-    tarjets.innerHTML = "<p>No results found for the search. Try again.</p>";
-  }
-}
+
 
