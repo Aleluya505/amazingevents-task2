@@ -1,3 +1,7 @@
+let data=localStorage.getItem("data");
+  data = JSON.parse(data)
+console.log(data); 
+
 //Cuando el usuario quiere tener acceso a más informacion/ detalles.
 
 let clickDetail = location.search;
@@ -22,8 +26,7 @@ let detailHome =
             <div class="col-12"><a href="./index.html" class="btn px-3 border btn-warning float-end">Back to home</a></div>
         </div>
     </div>
-</div>
-`;  
+</div>`;  
 
 tarjet.innerHTML = detailHome;
 
