@@ -20,19 +20,15 @@ categorias();
 
 //combinación de ambos filtros
 
-function ambosFiltros(checking, palabra, homeIndex) {
-  for (let elemento of checking) {
-    data.events.filter(evento => (evento.category == elemento) && ((evento.name.toLowerCase().includes(palabra)) ||  (evento.description.toLowerCase().includes(palabra)))
-              .forEach(evento => {
-                homeIndex += createCard(evento);
-              })
-  )};
-        homeIndex.length == 0 ? nothingFound(palabra) : cardContainer.innerHTML = homeIndex;
-    };
-
-
-
-
+function ambosFiltros(checkeados, wordIn, homeIndex) {
+    for (let elemento of checkeados) {
+      data.events.filter(evento => (evento.category == elemento) && ((evento.name.toLowerCase().includes(wordIn)) ||  (evento.description.toLowerCase().includes(wordIn))))
+                .forEach(evento => {
+                  homeIndex += createCard(evento);
+                });
+    }
+    homeIndex.length == 0 ? nothingFound(wordIn) : cardContainer.innerHTML = homeIndex;
+  };
 // filtro checks
 
 let checkeados = document.querySelectorAll(".form-check-input");
@@ -44,14 +40,14 @@ for (let check of checkeados){
         checkeado.push(clic.value);
       }
     }
-    let wordIn = searchForm.value.toLowerCase().trim();
+    let wordIn = inputBusqueda.value.toLowerCase().trim(); //verificar esto
         let homeIndex = "";
         if ( (checkeado.length > 0) && (wordIn == "") ) {
             for(let elemento of checkeado) {
                 data.events.filter(evento => elemento == evento.category).forEach(evento => { homeIndex += createCard(evento) });
                 cardContainer.innerHTML = homeIndex;
             };
-        } else if ( (checkeado.length > 0) && (text != "") ) {
+        } else if ( (checkeado.length > 0) && (wordIn != "") ) {
            ambosFiltros(checkeado, wordIn, homeIndex);            
         } else {
             crearTarjetas();
@@ -67,7 +63,7 @@ formBusqueda.addEventListener("submit", e => {
     e.preventDefault();
     let homeIndex = "";
     let resultados = false;
-    let palabra = inputBusqueda.value.toLowerCase().trim();
+    let wordIn = inputBusqueda.value.toLowerCase().trim();
 
     let catSelect = [];
     for (let clic of checkeados) { 
@@ -75,9 +71,9 @@ formBusqueda.addEventListener("submit", e => {
           catSelect.push(clic.value);
         };
 };
-    if((palabra != "") && (catSelect.length == 0)) {
+    if((wordIn != "") && (catSelect.length == 0)) {
       data.events.forEach(event => {
-        if( (event.name.toLowerCase().includes(palabra))|| (event.description.toLowerCase().includes(palabra)) ) {
+        if( (event.name.toLowerCase().includes(wordIn))|| (event.description.toLowerCase().includes(wordIn)) ) {
           homeIndex += createCard(event);
           resultados = true;
       }
@@ -85,41 +81,13 @@ formBusqueda.addEventListener("submit", e => {
         if(resultados) {
           cardContainer.innerHTML = homeIndex;
         }else {
-          nothingFound(palabra);
+          nothingFound(wordIn);
 
         };
-      }else if((resultados != "") && (catSelect.length > 0)) {
-              ambosFiltros(catSelect, palabra, homeIndex);
+      }else if((wordIn != "") && (catSelect.length > 0)) {
+              ambosFiltros(catSelect, wordIn, homeIndex);
     } else {
       crearTarjetas();
     };
       
 });      
-//verificar visisbilidad de las cards
-
-function verificarCardsVisibles() {
-  let visibleCards = [];
-  let selectedCategories = [];
-  let searchText = "";
-
-  let cards = document.querySelectorAll(".card");
-  for (let card of cards) {
-    if (card.getBoundingClientRect().top >= 0 && card.getBoundingClientRect().bottom <= window.innerHeight) {
-      visibleCards.push(card);
-    }
-  }
-
-  let checkboxes = document.querySelectorAll(".form-check-input:checked");
-  for (let checkbox of checkboxes) {
-    selectedCategories.push(checkbox.value);
-  }
-
-  let searchInput = document.querySelector(".searchInput");
-  searchText = searchInput.value;
-
-  return {
-    visibleCards: visibleCards,
-    selectedCategories: selectedCategories,
-    searchText: searchText
-  };
-}
