@@ -40,7 +40,7 @@ function categorias(){
  
 //error en la busqueda
 function nothingFound(word) {
-  document.getElementById('container-card').innerHTML = `
+  document.getElementById('card-container').innerHTML = `
   <div class="text-center">
   <p class="pb-3"><i class="bi bi-search fs-1"></i></p>
   <h3>We couldn't find anything for '${word}'</h3>

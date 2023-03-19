@@ -4,14 +4,14 @@ console.log(data);
 
 
 //Creacion de tarjetas rel con el data.js
-let containerCard = document.getElementById("card-container");
+let cardContainer = document.getElementById("card-container");
 
 function crearTarjetas(){
   let homeIndex = "";
   for (let event of data.events){
     homeIndex += createCard(event)
   };
-    containerCard.innerHTML += homeIndex;
+    cardContainer.innerHTML += homeIndex;
 }
 crearTarjetas();
 
@@ -20,33 +20,39 @@ categorias();
 
 //combinación de ambos filtros
 
-function ambosFiltros (checking, palabra, homeIndex){
-  for(elemento of checking){
-      data.events.filter(evento => evento == evento.category) && ((evento.name.toLoweCase().includes(palabra) || evento.description.toLoweCase().includes(palabra)) ).forEach(evento => {homeIndex += createCard(evento)});
-       };
-       homeIndex.lenght == 0 ? nothingFound(palabra) : containerCard.innerHTML = homeIndex;
-  }
+function ambosFiltros(checking, palabra, homeIndex) {
+  for (let elemento of checking) {
+    data.events.filter(evento => (evento.category == elemento) && ((evento.name.toLowerCase().includes(palabra)) ||  (evento.description.toLowerCase().includes(palabra)))
+              .forEach(evento => {
+                homeIndex += createCard(evento);
+              })
+  )};
+        homeIndex.length == 0 ? nothingFound(palabra) : cardContainer.innerHTML = homeIndex;
+    };
+
+
+
 
 // filtro checks
 
 let checkeados = document.querySelectorAll(".form-check-input");
 for (let check of checkeados){
   check.addEventListener("change",() => {
-    let checkeados = [];
+    let checkeado = [];
     for (let clic of checkeados){
       if (clic.checked) {
-        checkeados.push(clic.value);
+        checkeado.push(clic.value);
       }
     }
-    let palabra = inputBusqueda.value.toLowerCase().trim();
+    let wordIn = searchForm.value.toLowerCase().trim();
         let homeIndex = "";
-        if ( (checkeados.length > 0) && (palabra == "") ) {
-            for(let elemento of checkeados) {
+        if ( (checkeado.length > 0) && (wordIn == "") ) {
+            for(let elemento of checkeado) {
                 data.events.filter(evento => elemento == evento.category).forEach(evento => { homeIndex += createCard(evento) });
                 cardContainer.innerHTML = homeIndex;
             };
-        } else if ( (checkeados.length > 0) && (palabra != "") ) {
-           ambosFiltros(checkeados, palabra, homeIndex);            
+        } else if ( (checkeado.length > 0) && (text != "") ) {
+           ambosFiltros(checkeado, wordIn, homeIndex);            
         } else {
             crearTarjetas();
         };
@@ -61,26 +67,26 @@ formBusqueda.addEventListener("submit", e => {
     e.preventDefault();
     let homeIndex = "";
     let resultados = false;
-    let palabra = inputBusqueda.value.toLoweCase().trim();
+    let palabra = inputBusqueda.value.toLowerCase().trim();
 
     let catSelect = [];
     for (let clic of checkeados) { 
         if (clic.checked) {
           catSelect.push(clic.value);
         };
-    
 };
     if((palabra != "") && (catSelect.length == 0)) {
       data.events.forEach(event => {
-        if( (event.name.toLocaleLowerCase().includes(palabra))|| (event.description.toLowerCase().includes(palabra)) ) {
+        if( (event.name.toLowerCase().includes(palabra))|| (event.description.toLowerCase().includes(palabra)) ) {
           homeIndex += createCard(event);
           resultados = true;
       }
   });
         if(resultados) {
-          containerCard.innerHTML = homeIndex;
+          cardContainer.innerHTML = homeIndex;
         }else {
           nothingFound(palabra);
+
         };
       }else if((resultados != "") && (catSelect.length > 0)) {
               ambosFiltros(catSelect, palabra, homeIndex);
@@ -89,3 +95,31 @@ formBusqueda.addEventListener("submit", e => {
     };
       
 });      
+//verificar visisbilidad de las cards
+
+function verificarCardsVisibles() {
+  let visibleCards = [];
+  let selectedCategories = [];
+  let searchText = "";
+
+  let cards = document.querySelectorAll(".card");
+  for (let card of cards) {
+    if (card.getBoundingClientRect().top >= 0 && card.getBoundingClientRect().bottom <= window.innerHeight) {
+      visibleCards.push(card);
+    }
+  }
+
+  let checkboxes = document.querySelectorAll(".form-check-input:checked");
+  for (let checkbox of checkboxes) {
+    selectedCategories.push(checkbox.value);
+  }
+
+  let searchInput = document.querySelector(".searchInput");
+  searchText = searchInput.value;
+
+  return {
+    visibleCards: visibleCards,
+    selectedCategories: selectedCategories,
+    searchText: searchText
+  };
+}
