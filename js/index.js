@@ -1,9 +1,5 @@
-let data = localStorage.getItem("data");
-data = JSON.parse(data) // extrae del local storage los arrays a strings-
-console.log(data); 
 
 
-//Creacion de tarjetas rel con el data.js
 let cardContainer = document.getElementById("card-container");
 
 function crearTarjetas(){
@@ -18,7 +14,6 @@ crearTarjetas();
 //Generar checkboxes
 categorias();
 
-//combinación de ambos filtros
 
 function ambosFiltros(checkeados, wordIn, homeIndex) {
     for (let elemento of checkeados) {
@@ -28,9 +23,8 @@ function ambosFiltros(checkeados, wordIn, homeIndex) {
                 });
     }
     homeIndex.length == 0 ? nothingFound(wordIn) : cardContainer.innerHTML = homeIndex;
-  };
+};
 // filtro checks
-
 let checkeados = document.querySelectorAll(".form-check-input");
 for (let check of checkeados){
   check.addEventListener("change",() => {
@@ -40,12 +34,12 @@ for (let check of checkeados){
         checkeado.push(clic.value);
       }
     }
-    let wordIn = inputBusqueda.value.toLowerCase().trim(); //verificar esto
-        let homeIndex = "";
+    let wordIn = inputBusqueda.value.toLowerCase().trim(); 
+    let homeIndex = "";
         if ( (checkeado.length > 0) && (wordIn == "") ) {
-            for(let elemento of checkeado) {
+        for(let elemento of checkeado) {
                 data.events.filter(evento => elemento == evento.category).forEach(evento => { homeIndex += createCard(evento) });
-                cardContainer.innerHTML = homeIndex;
+    cardContainer.innerHTML = homeIndex;
             };
         } else if ( (checkeado.length > 0) && (wordIn != "") ) {
            ambosFiltros(checkeado, wordIn, homeIndex);            
@@ -59,7 +53,7 @@ for (let check of checkeados){
 
 let formBusqueda = document.querySelector(".searchForm")
 let inputBusqueda = document.querySelector(".searchInput")
-formBusqueda.addEventListener("submit", e => {
+formBusqueda.addEventListener('submit', e => {
     e.preventDefault();
     let homeIndex = "";
     let resultados = false;
@@ -90,4 +84,4 @@ formBusqueda.addEventListener("submit", e => {
       crearTarjetas();
     };
       
-});      
+}); 

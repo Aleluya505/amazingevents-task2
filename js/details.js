@@ -1,9 +1,4 @@
-let data=localStorage.getItem("data");
-  data = JSON.parse(data)
-console.log(data); 
-
 //Cuando el usuario quiere tener acceso a más informacion/ detalles.
-
 let clickDetail = location.search;
 let siguiente = new URLSearchParams(clickDetail);
 let eventGuia = siguiente.get("id");

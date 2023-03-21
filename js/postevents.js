@@ -1,9 +1,3 @@
-let data = localStorage.getItem("data");
-data = JSON.parse(data) // extrae del local storage los arrays a strings-
-console.log(data); 
-
-
-
 //Creacion de tarjetas rel con el data.js
 let cardContainer = document.getElementById("card-container");
 
