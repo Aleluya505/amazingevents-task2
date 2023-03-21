@@ -61,16 +61,18 @@ font-size: 16px;
   background-color: #f26e98; /* Cambia el color de fondo al pasar el cursor sobre el botón */
 }
 
-main{
-  padding: 10px;
-  margin: 20px;
-}
+
 /* banner */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Establece un ancho máximo para el contenedor */
+  margin: 0 auto; /* Centra el contenedor en la página */
+}
+
 .banner {
   position: relative;
   margin-bottom: 30px;
   width: 100%;
-  height: 400px;
   overflow: hidden;
 }
 
@@ -88,22 +90,33 @@ main{
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 2vw; /* Utiliza el 2% del ancho de la pantalla para establecer el tamaño de la flecha */
 }
 
 .banner a:hover {
   background-color: rgba(230, 175, 224, 0.8);
 }
 
-.siguiente {
-  right: 0;
+.anterior, .siguiente {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4vw; /* Utiliza el 4% del ancho de la pantalla para establecer el tamaño de la flecha */
+  color: #fff;
 }
 
 .anterior {
-  left: 0;
+  left: 2%; /* La coloca a un 2% de la izquierda del contenedor */
 }
 
+.siguiente {
+  right: 2%; /* La coloca a un 2% de la derecha del contenedor */
+}
 
+main{
+  padding: 10px;
+  margin: 20px;
+}
 
 /* cards */
 .img {
@@ -138,16 +151,15 @@ main{
   flex-direction: row;
   align-items: center;
   margin-bottom: 50px;
-  position: relative; /* Establecemos la posición relativa para poder manipular z-index */
+  position: relative; 
 }
-
 .details img {
-  position: absolute; /* Establecemos la posición absoluta para que la imagen quede por encima del texto */
-  top: 0; /* Colocamos la imagen en la parte superior del contenedor */
-  left: 0; /* Colocamos la imagen en la parte izquierda del contenedor */
-  z-index: 1; /* Asignamos un valor mayor a la propiedad z-index para que la imagen quede por encima del texto */
-  width: 100%; /* Ajustamos el ancho de la imagen para que ocupe todo el ancho del contenedor */
-  height: auto; /* Ajustamos la altura de la imagen para que se adapte proporcionalmente al ancho */
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  z-index: 1; 
+  width: 100%; 
+  height: auto; 
 }
 
 .details .texto{
@@ -155,18 +167,13 @@ main{
   font-size: small;
   text-align: center;
   width: auto;
-  z-index: 0; /* Asignamos un valor menor a la propiedad z-index para que el texto quede detrás de la imagen */
+  z-index: 0; 
 }
 
 /* stats*/
- .table th td tr {
-  border: 1px solid black; 
-  border-collapse:collapse;
-  font-size: 12px;
-  background-color: rgb(241, 240, 234);
-  empty-cells: show;
-  table-layout:fixed;
- }
+.tabla-stats {
+  flex-basis: 1024px;
+}
 
  /* footer */
  footer {
@@ -204,63 +211,53 @@ main{
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
-  .banner {
-    height: 250px;
-  }
-}
 
-@media (max-width: 576px) {
-  .banner {
-    height: 200px;
-  }
-}
 
-@media only screen and (min-width: 375px) {
+/*@media only screen and (min-width: 375px) {
 
   .navbar-nav-scroll {
     --bs-scroll-height: 200px;
   }
   
 }
-@media (max-width: 576px) { 
-  .banner {
-    height: 200px;
-  }
-
+@media screen and (min-width: 768px) {
   .banner a {
-    padding: 0.25rem;
-    font-size: 1rem;
-  }
-
-  .siguiente,
-  .anterior {
-    font-size: 1rem;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .srch {
-    display: flex;
-    justify-content: center;
-  }
-  .banner {
-    height: 300px;
+    font-size: 24px; 
   }
   
-  .banner a {
-    font-size: 1.5rem;
-    padding: 0.5rem;
+  .anterior, .siguiente {
+    font-size: 40px; 
   }
-  .siguiente,
+  
   .anterior {
-    font-size: 1.5rem;
+    left: 20px;
+  }
+
+  .siguiente {
+    right: 20px; 
+  }
+}*/
+/* Estilos para pantallas grandes (mayores de 992px) */
+@media (min-width: 992px) {
+  /* Aquí van tus estilos para pantallas grandes */
+
+}
+
+/* Estilos para tabletas (entre 768px y 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Aquí van tus estilos para tabletas */
+  .details img {
+    width: 100%; 
+    
   }
 }
 
-@media only screen and (min-width: 1200px) {
-  .banner {
-    height: 500px;
+/* Estilos para dispositivos móviles (menores de 767px) */
+@media (max-width: 767px) {
+  /* Aquí van tus estilos para dispositivos móviles */
+}
+@media (max-width: 767px) {
+  .container {
+    max-width: 100%;
   }
 }
-

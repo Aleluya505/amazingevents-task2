@@ -1,10 +1,18 @@
-async function getData(){
-  await fetch("https://mindhub-xj03.onrender.com/api/amazing")
-  .then(respuesta => respuesta.json())
-  .then(json => data=json)
-  localStorage.setItem("data",JSON.stringify(data))
-} 
-getData();
+const urlAPI = ('https://mindhub-xj03.onrender.com/api/amazing');
+async function dataApi() {
+  try {
+    let response = await fetch(urlAPI);
+    let data = await response.json();
+    localStorage.setItem('dataLocal', JSON.stringify(data));    
+  } catch (error) {
+    console.error('Cant get data: ' + error);
+  }
+};
+
+dataApi();
+let data = JSON.parse(localStorage.getItem('dataLocal'));
+ 
+
 
 function createCard(event){
   let card = `<div class="col col-md-3 col-sm-6">
