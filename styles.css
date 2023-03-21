@@ -61,10 +61,7 @@ font-size: 16px;
   background-color: #f26e98; /* Cambia el color de fondo al pasar el cursor sobre el botón */
 }
 
-main{
-  padding: 10px;
-  margin: 20px;
-}
+
 /* banner */
 .container {
   width: 100%;
@@ -76,7 +73,6 @@ main{
   position: relative;
   margin-bottom: 30px;
   width: 100%;
-  height: 400px;
   overflow: hidden;
 }
 
@@ -117,6 +113,10 @@ main{
   right: 2%; /* La coloca a un 2% de la derecha del contenedor */
 }
 
+main{
+  padding: 10px;
+  margin: 20px;
+}
 
 /* cards */
 .img {
@@ -213,7 +213,7 @@ main{
 
 
 
-@media only screen and (min-width: 375px) {
+/*@media only screen and (min-width: 375px) {
 
   .navbar-nav-scroll {
     --bs-scroll-height: 200px;
@@ -222,18 +222,42 @@ main{
 }
 @media screen and (min-width: 768px) {
   .banner a {
-    font-size: 24px; /* Cambia el tamaño de la flecha en pantallas con un ancho mínimo de 768 píxeles */
+    font-size: 24px; 
   }
   
   .anterior, .siguiente {
-    font-size: 40px; /* Cambia el tamaño de la flecha en pantallas con un ancho mínimo de 768 píxeles */
+    font-size: 40px; 
   }
   
   .anterior {
-    left: 20px; /* La coloca a 20 píxeles de la izquierda del contenedor en pantallas más grandes */
+    left: 20px;
   }
 
   .siguiente {
-    right: 20px; /* La coloca a 20 píxeles de la derecha del contenedor en pantallas más grandes */
+    right: 20px; 
+  }
+}*/
+/* Estilos para pantallas grandes (mayores de 992px) */
+@media (min-width: 992px) {
+  /* Aquí van tus estilos para pantallas grandes */
+
+}
+
+/* Estilos para tabletas (entre 768px y 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Aquí van tus estilos para tabletas */
+  .details img {
+    width: 100%; 
+    
+  }
+}
+
+/* Estilos para dispositivos móviles (menores de 767px) */
+@media (max-width: 767px) {
+  /* Aquí van tus estilos para dispositivos móviles */
+}
+@media (max-width: 767px) {
+  .container {
+    max-width: 100%;
   }
 }
